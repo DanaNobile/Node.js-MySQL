@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/DanaNobile/Node.js-MySQL#readme",
   "dependencies": {
-    "inquirer": "^7.2.0"
+    "inquirer": "^7.2.0",
+    "mysql2": "^2.1.0"
   }
 }

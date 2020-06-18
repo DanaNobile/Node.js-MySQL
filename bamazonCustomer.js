@@ -1,6 +1,7 @@
-let mysql = require("mysql");
+
 let inquirer = require('inquirer');
 
+let mysql = require("mysql2");
 
 
 var connection = mysql.createConnection({
@@ -13,8 +14,8 @@ var connection = mysql.createConnection({
     user: "root",
 
     // Your password
-    password: "",
-    database: "ice_creamDB"
+    password: "Hankaaron",
+    database: "products_db"
 });
 
 connection.connect(function (err) {
