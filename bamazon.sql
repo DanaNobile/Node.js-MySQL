@@ -4,40 +4,41 @@ CREATE DATABASE bamazon_DB;
 USE bamazon_DB;
 
 CREATE TABLE products(
-  item_id INT NOT NULL AUTO_INCREMENT,
+  id INT NOT NULL AUTO_INCREMENT,
+  item_id INT default 0,
   product_name VARCHAR(100) NOT NULL,
   department_name VARCHAR(100) NOT NULL,
-  price INT default 0,
+  price DECIMAL(10,2) NULL,
   stock_quantity INT default 0,
-  PRIMARY KEY (item_id)
+  PRIMARY KEY (id)
 );
 
-INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Cutting Board", "Kitchen", 30, 50);
+INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
+VALUES (749378, "Cutting Board", "Kitchen", 29.95, 50);
 
-INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Ninja Blender", "Kitchen", 90, 50);
+INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
+VALUES (734849, "Ninja Blender", "Kitchen", 89.50, 50);
 
-INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Apple AirPods", "Electronics", 140, 100);
+INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
+VALUES (456937, "Apple AirPods", "Electronics", 139.98, 100);
 
-INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("FitBit Watch", "Electronics", 80, 100);
+INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
+VALUES (409235, "FitBit Watch", "Electronics", 79.99, 100);
 
-INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Ray-Ban Erika Sunglasses", "Accessories", 120, 30);
+INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
+VALUES (839909, "Ray-Ban Erika Sunglasses", "Accessories", 119.00, 30);
 
-INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Michael Kors Voyager Tote", "Accessories", 150, 30);
+INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
+VALUES (878900, "Michael Kors Voyager Tote", "Accessories", 149.00, 30);
 
-INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("File Organizer", "Office", 30, 40);
+INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
+VALUES (127765, "File Organizer", "Office", 32.95, 40);
 
-INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Stand-Up Desk", "Office", 115, 40);
+INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
+VALUES (147365, "Stand-Up Desk", "Office", 115.50, 40);
 
-INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Standing Lamp", "Home Decor", 60, 50);
+INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
+VALUES (339856, "Standing Lamp", "Home Decor", 59.98, 50);
 
-INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Wall Clock", "Home Decor", 160, 50);
+INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
+VALUES (349122, "Wall Clock", "Home Decor", 159.99, 50);
