@@ -1,4 +1,4 @@
-
+// Sets up inquirer and mysql, connects to local host and takes in database and password
 let inquirer = require('inquirer');
 
 let mysql = require("mysql2");
@@ -25,74 +25,93 @@ connection.connect(function (err) {
 });
 
 
+
+// This displays all of the products once node is ran:
+
 function displayProducts() {
     console.log("Please scroll down to view all of the bamazon products...\n");
     connection.query("SELECT * FROM products", function (err, res) {
         if (err) throw err;
         // Log all results of the SELECT statement
         console.log(res);
-        connection.end();
+        // connection.end();
+        userShop();
+
     });
 }
 
 displayProducts()
-userShop()
+
+// This asks users if they want an item and then takes in a functions to understand which item and how many
 
 function userShop() {
-    inquirer
-        .prompt({
-            name: "action",
-            type: "list",
-            message: "What is the ID of the item you would like to buy?",
-            choices: [
-                "Cutting Board, ID: 749378",
-                "Ninja Blender, ID: 734849",
-                "Apple AirPods, ID: 456937",
-                "FitBit Watch, ID: 409235",
-                "Ray-Ban Erika Sunglasses ID: 839909",
-                "Michael Kors Voyager Tote ID: 878900",
-                "File Organizer, ID: 127765",
-                "Stand-Up Desk, ID: 147365 ",
-                "Standing Lamp : 339856",
-                "Wall Clock, ID: 349122",
-                "Exit"
-            ]
-        })
-        .then(function (answer) {
-            switch (answer.action) {
 
-                case "Scroll to pick your item?":
+    inquirer.prompt([{
+
+        type: "confirm",
+        name: "continue",
+        message: "Would you like to purchase an item?",
+        default: true
+
+    }]).then(function (user) {
+        if (user.continue === true) {
+            selectionPrompt();
+        } else {
+            console.log("Thank you! Come back soon!");
+        }
+    });
+}
+
+
+function selectionPrompt() {
+
+    inquirer.prompt([{
+
+        type: "input",
+        name: "inputId",
+        message: "Please enter the ID of the item you would like to purchase.",
+    },
+    {
+        type: "input",
+        name: "inputNumber",
+        message: "How many units of this item would you like to purchase?",
+
+    }
+    ]).then(function (userPurchase) {
+
+        //This connects to database to reference the stock quantities 
+
+        connection.query("SELECT * FROM products WHERE item_id=?", userPurchase.inputId, function (err, res) {
+            if (err) throw err;
+            for (var i = 0; i < res.length; i++) {
+
+
+                if (userPurchase.inputNumber > res[i].stock_quantity) {
+                    console.log("Sorry! Insufficient quantity. Try back again soon.");
                     userShop();
-                    break;
 
-                case "How many units would you like to purchase?":
-                    userQuantity();
-                    break;
+                } else {
+                    //list item information for user for confirm prompt
+                    console.log("Great! We will start the process to fill your order.");
+                    console.log("___________________________________________________");
+                    console.log("Your Order Summary:");
+                    console.log("________________");
+                    console.log("Product: " + res[i].product_name);
+                    console.log("Department: " + res[i].department_name);
+                    console.log("Price: $" + res[i].price);
+                    console.log("Quantity: " + userPurchase.inputNumber);
+                    console.log("________________");
+                    console.log("Total: $" + res[i].price * userPurchase.inputNumber);
+                    console.log("___________________________________________________");
 
+                    var newStock = (res[i].stock_quantity - userPurchase.inputNumber);
 
-                case "exit":
-                    connection.end();
-                    break;
+                    console.log("Remaining Quantity: " + newStock + " Units");
+                }
             }
         });
+    });
 }
 
-// userShop()
 
-function userQuantity() {
-    inquirer
-        .prompt({
-            Quantity: "",
 
-        })
-        .then(function (answer) {
-            var query = "SELECT position, song, year FROM top5000 WHERE ?";
-            connection.query(query, { artist: answer.artist }, function (err, res) {
-                if (err) throw err;
-                for (var i = 0; i < res.length; i++) {
-                    console.log("Position: " + res[i].position + " || Song: " + res[i].song + " || Year: " + res[i].year);
-                }
-                runSearch();
-            });
-        });
-}
