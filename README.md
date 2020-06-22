@@ -27,10 +27,9 @@ User enters the ID and quanity of the items they wish to purchase.
 ## Images:
 
 ![Item Purchase](/images/Purchase-Summary.png)
-Format: ![Alt Text](url)
+
 
 ![Insufficient Quantity](/images/Insufficient-Quantity.png)
-Format: ![Alt Text](url)
 
-![Insufficient Quantity](/images/code.mov)
-Format: ![Alt Text](url)
+
+
