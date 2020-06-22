@@ -1,5 +1,8 @@
 # Node.js-MySQL
 
+## Video Link:
+https://youtu.be/3JwazQ94v2k
+
 ## Description:
 This is a node application using MySql to create a mock online shop. The details provided for each item include:
 * item_id (unique id for each product)
@@ -23,6 +26,8 @@ User enters the ID and quanity of the items they wish to purchase.
 * Stack Overflow
 * UCF Student Collobaration 
 * UCF Activities (mainly IceCreamCrud and GreatBay)
+
+
 
 ## Images:
 
